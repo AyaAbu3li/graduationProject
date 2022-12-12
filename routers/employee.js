@@ -6,7 +6,7 @@ const router = new express.Router()
 router.post('/employee', auth ,async (req,res) => {
     const employee = new Employee({
         ...req.body,
-        owner: req.user._id
+        salonname: req.user.name
     })
     try{
         await employee.save()
@@ -27,7 +27,7 @@ router.post('/employee', auth ,async (req,res) => {
     }
 })
 
-router.get('/Allbooking' , async (req, res) => {
+router.get('/Allemployees' , async (req, res) => {
     try{
         const offers = await Employee.find()
         res.send(offers)
