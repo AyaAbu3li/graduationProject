@@ -27,46 +27,21 @@ router.post('/employee', auth ,async (req,res) => {
     }
 })
 
-router.get('/Allemployees' , async (req, res) => {
-    try{
-        const offers = await Employee.find()
-        res.send(offers)
-    } catch(e){
-        res.status(500).send()
-    }
-})
-
-router.get('/employee/:id' , auth, async (req, res) => {
-    const _id = req.params.id
-
-    try{
-       const employee = await Employee.findOne({ _id, owner: req.user._id })
-
-        if(!employee){
-            return res.status(404).send()
-        }
-
-        res.send(employee)
-    } catch(e){
-        res.status(500).send()
-    }
-})
-
 router.get('/employee/:id' , async (req, res) => {
     const _id = req.params.id
 
     try{
-       const employee = await Employee.findOne({ _id })
+       const employee = await Employee.findById({ _id })
 
         if(!employee){
             return res.status(404).send()
         }
-
         res.send(employee)
     } catch(e){
         res.status(500).send()
     }
 })
+
 
 router.patch('/employee/:id' , async (req, res) => {
     const updates = Object.keys(req.body)

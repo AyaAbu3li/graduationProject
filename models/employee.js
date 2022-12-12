@@ -11,6 +11,9 @@ const employeeSchema = new mongoose.Schema( {
     salonname: {
         type: String
     },
+    job: {
+        type: String
+    },
 }, {
     timestamps: true
 })
