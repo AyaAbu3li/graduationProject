@@ -16,18 +16,17 @@ router.post('/employee', auth ,async (req,res) => {
     }
  })
 
- router.get('/employee' , auth, async (req, res) => {
-    console.log(req.user._id)
+ router.get('/employee/:salonname' , async (req, res) => {
+    const salonName = req.params.salonname
     try{
-        const offers = await Employee.find({  })
-        // owner: req.user._id
-        res.send(offers)
+        const employees = await Employee.find({ salonname:salonName })
+        res.send(employees)
     } catch(e){
         res.status(500).send()
     }
 })
 
-router.get('/employee/:id' , async (req, res) => {
+router.get('/employe/:id' , async (req, res) => {
     const _id = req.params.id
 
     try{
@@ -37,6 +36,7 @@ router.get('/employee/:id' , async (req, res) => {
             return res.status(404).send()
         }
         res.send(employee)
+
     } catch(e){
         res.status(500).send()
     }

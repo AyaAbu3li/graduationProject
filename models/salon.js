@@ -31,6 +31,15 @@ const salonSchema = new mongoose.Schema( {
     googlemaps: {
         type: String
     },
+    openTime: {
+        type: String
+    },
+    closeTime: {
+        type: String
+    },
+    holiday: {
+        type: String
+    },
 }, {
     timestamps: true
 })

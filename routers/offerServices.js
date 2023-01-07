@@ -17,9 +17,10 @@ router.post('/offerservice', auth ,async (req,res) => {
  })
 
  router.get('/offerservices/:id' , async (req, res) => {
+    const _id = req.params.id
     try{
-        const offers = await OfferServices.find({ })
-        res.send(offers)
+       const offers = await OfferServices.find({ owner: _id }) // owner offer id
+       res.send(offers)
     } catch(e){
         res.status(500).send()
     }

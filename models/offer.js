@@ -37,7 +37,7 @@ price: {
 })
 
 offerSchema.virtual('offerServices',{
-        ref: 'OfferService',
+        ref: 'offerServices',
         localField: '_id',
         foreignField: 'owner'
     })

@@ -14,6 +14,7 @@ const whoAreWeRouter = require('./routers/whoarewe')
 const booking = require('./routers/booking')
 const message = require('./routers/message')
 const employee = require('./routers/employee')
+const category = require('./routers/category')
 
 connectDB()
 
@@ -46,6 +47,7 @@ app.use(whoAreWeRouter)
 app.use(booking)
 app.use(message)
 app.use(employee)
+app.use(category)
 
 const PORT = process.env.PORT || 3000
 

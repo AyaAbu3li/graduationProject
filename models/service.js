@@ -6,7 +6,15 @@ const Service = mongoose.model('Service', {
         type: String,
         required: true
     },
-    picture: {
+    category: {
+        type: String,
+    },
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User'
+    },
+    salon: {
         type: String,
     },
     price: {

@@ -19,11 +19,10 @@ router.post('/offers', auth ,async (req,res) => {
  })
 
  router.get('/offers' , auth, async (req, res) => {
+    
     try{
         const offers = await Offer.find({ owner: req.user._id })
         res.send(offers)
-        console.log(req.user._id)
-        console.log(offers)
     } catch(e){
         res.status(500).send()
     }
@@ -63,7 +62,6 @@ router.get('/offer/:id' , async (req, res) => {
         if(!offer){
             return res.status(404).send()
         }
-
         res.send(offer)
     } catch(e){
         res.status(500).send()

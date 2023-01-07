@@ -1,9 +1,14 @@
 const express = require('express');
-const Salon = require('../models/service')
+const Service = require('../models/service')
+const auth = require('../middleware/auth')
 const router = new express.Router()
 
-router.post('/services', async (req,res) => {
-    const services = new service(req.body)
+router.post('/services', auth, async (req,res) => {
+    const services = new Service({
+        ...req.body,
+        salon: req.user.name,
+        owner: req.user._id
+    })
     try{
         await services.save()
         res.status(201).send(services)
@@ -12,17 +17,27 @@ router.post('/services', async (req,res) => {
     }
  })
 
- router.get('/services' , async (req, res) => {
+ router.get('/services' , auth, async (req, res) => {
 
     try{
-        const services = await Service.find({})
+        const services = await Service.find({ owner: req.user._id })
         res.send(services)
     } catch(e){
         res.status(500).send()
     }
 })
 
-router.get('/services/:id' , async (req, res) => {
+router.get('/services/:salonname' , async (req, res) => {
+    const salonName = req.params.salonname
+    try{
+        const services = await Service.find({ salon:salonName })
+        res.send(services)
+    } catch(e){
+        res.status(500).send()
+    }
+})
+
+router.get('/service/:id' , async (req, res) => {
     const _id = req.params.id
 
     try{
@@ -38,8 +53,6 @@ router.get('/services/:id' , async (req, res) => {
 
 router.patch('/services/:id' , async (req, res) => {
     const updates = Object.keys(req.body)
-    const allowedUpdates = [' name' , 'email' , ' phone' ]
-
     try {
         const service = await Service.findById(req.params.id)
 
