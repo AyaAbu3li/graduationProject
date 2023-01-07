@@ -4,6 +4,9 @@ const categorySchema = new mongoose.Schema( {
     category: {
         type: String,
     },
+    email: {
+        type: String,
+    },
 }, {
     timestamps: true
 })

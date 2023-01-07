@@ -14,7 +14,7 @@ const Service = mongoose.model('Service', {
         required: true,
         ref: 'User'
     },
-    salon: {
+    salonEmail: {
         type: String,
     },
     price: {
@@ -22,7 +22,7 @@ const Service = mongoose.model('Service', {
         required: true,
     },
     time: {
-        type: Number,
+        type: String,
         required: true,
     },
 

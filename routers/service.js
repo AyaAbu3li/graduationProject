@@ -17,7 +17,7 @@ router.post('/services', auth, async (req,res) => {
     }
  })
 
- router.get('/services' , auth, async (req, res) => {
+ router.get('/services' , auth, async (req, res) => { // for salon account
 
     try{
         const services = await Service.find({ owner: req.user._id })
@@ -27,10 +27,10 @@ router.post('/services', auth, async (req,res) => {
     }
 })
 
-router.get('/services/:salonname' , async (req, res) => {
-    const salonName = req.params.salonname
+router.get('/services/:salonEmail' , async (req, res) => { // for user account
+    const salonemail = req.params.salonEmail
     try{
-        const services = await Service.find({ salon:salonName })
+        const services = await Service.find({ salonEmail:salonemail })
         res.send(services)
     } catch(e){
         res.status(500).send()

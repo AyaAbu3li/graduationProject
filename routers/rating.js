@@ -1,32 +1,33 @@
 const express = require('express');
-const Category = require('../models/category')
+const Rating = require('../models/rating')
 const auth = require('../middleware/auth');
 const User = require('../models/user');
 const router = new express.Router()
 
-router.post('/category', auth, async (req,res) => {
-    const category = new Category({
+router.post('/rating', auth, async (req,res) => {
+    const rating = new Rating({
         ...req.body,
-        email:req.user.email
+        owner:req.user._id
     })
     
     try{
-        await category.save()
-        res.status(201).send(category)
+        await rating.save()
+        res.status(201).send(rating)
     } catch(e){
         res.status(400).send(e)
     }
  })
 
- router.get('/category/:email' , async (req, res) => {
+ router.get('/rating/:email' , async (req, res) => {
     const Email = req.params.email
 
     try{
-        const category = await Category.find({  email:Email })
-        res.send(category)
+        const rating = await Rating.find({  email:Email })
+        res.send(rating)
     } catch(e){
         res.status(500).send()
     }
 })
+
 
 module.exports = router
