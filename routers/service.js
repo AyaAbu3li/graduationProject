@@ -4,10 +4,12 @@ const auth = require('../middleware/auth')
 const router = new express.Router()
 
 router.post('/services', auth, async (req,res) => {
+    const _id = req.params.id
+
     const services = new Service({
         ...req.body,
-        salon: req.user.name,
-        owner: req.user._id
+        owner: req.user._id,
+        salonEmail: req.user.email
     })
     try{
         await services.save()

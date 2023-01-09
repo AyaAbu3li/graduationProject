@@ -36,7 +36,7 @@ router.post('/CRrating/:email', auth, async (req,res) => {
     } catch(e){
         res.status(500).send()
     }
-})
+}) // if user rates or not
 
  router.get('/rating/:email' , async (req, res) => {
     const Email = req.params.email

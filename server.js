@@ -15,6 +15,8 @@ const booking = require('./routers/booking')
 const message = require('./routers/message')
 const employee = require('./routers/employee')
 const category = require('./routers/category')
+const rating = require('./routers/rating')
+const allcategory = require('./routers/allcategory')
 
 connectDB()
 
@@ -48,6 +50,8 @@ app.use(booking)
 app.use(message)
 app.use(employee)
 app.use(category)
+app.use(rating)
+app.use(allcategory)
 
 const PORT = process.env.PORT || 3000
 

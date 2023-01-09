@@ -23,8 +23,11 @@ const Service = mongoose.model('Service', {
     },
     time: {
         type: String,
-        required: true,
     },
+    isSelected: {
+        type: Boolean,
+        default: false,
+    }
 
 })
 

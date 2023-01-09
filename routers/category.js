@@ -1,7 +1,6 @@
 const express = require('express');
 const Category = require('../models/category')
 const auth = require('../middleware/auth');
-const User = require('../models/user');
 const router = new express.Router()
 
 router.post('/category', auth, async (req,res) => {
@@ -17,7 +16,6 @@ router.post('/category', auth, async (req,res) => {
         res.status(400).send(e)
     }
  })
-
  router.get('/category/:email' , async (req, res) => {
     const Email = req.params.email
 
