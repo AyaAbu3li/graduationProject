@@ -9,7 +9,8 @@ router.post('/CRrating/:email', auth, async (req,res) => {
 
     const rating = new Rating({
         ...req.body,
-        owner:req.user._id
+        owner:req.user._id,
+        salonEmail:Email
     })
 
     try{

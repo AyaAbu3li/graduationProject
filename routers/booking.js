@@ -6,7 +6,10 @@ const router = new express.Router()
 router.post('/booking', auth ,async (req,res) => {
     const booking = new Booking({
         ...req.body,
-        owner: req.user._id
+        owner: req.user._id,
+        PersonName: req.user.name, 
+        phoneNumber: req.user.phone,
+
     })
     try{
         await booking.save()

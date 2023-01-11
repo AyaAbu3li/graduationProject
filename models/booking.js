@@ -4,7 +4,11 @@ const bookingSchema = new mongoose.Schema( {
 role: {
     type: Number,
     default: 0
-}, // 0 => upconig , 1 => history
+},
+// 0  => upcomig      
+// 1  => history approved
+// 10 => history not approved
+// 11 => history Canceld
 PersonName: {
     type: String,
     required: true
@@ -21,7 +25,7 @@ owner: {
 SalonName: {
     type: String,
 },
-serviceName: {
+SalonEmail: {
     type: String,
 },
 date: {
