@@ -9,7 +9,7 @@ router.post('/booking', auth ,async (req,res) => {
         owner: req.user._id,
         PersonName: req.user.name, 
         phoneNumber: req.user.phone,
-
+        PersonPic: req.user.picture,
     })
     try{
         await booking.save()
@@ -20,9 +20,9 @@ router.post('/booking', auth ,async (req,res) => {
  })
 
  router.get('/booking' , auth, async (req, res) => {
-    console.log(req.user._id)
+
     try{
-        const offers = await Booking.find({  })
+        const offers = await Booking.find({ owner: req.user._id })
         // owner: req.user._id
         res.send(offers)
     } catch(e){

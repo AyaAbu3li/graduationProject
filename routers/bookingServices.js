@@ -23,7 +23,7 @@ router.post('/bookingServices', async (req,res) => {
     }
 })
 
-router.delete('/offerservice/:id' , async (req, res) => {
+router.delete('/bookingServices/:id' , async (req, res) => {
     try {
         const offerservice = await BookingServices.findOneAndDelete({ _id: req.params.id })
         if (!offerservice) {

@@ -28,6 +28,12 @@ SalonName: {
 SalonEmail: {
     type: String,
 },
+SalonPic: {
+    type: String,
+},
+PersonPic: {
+    type: String,
+},
 date: {
     type: Date,
 },
