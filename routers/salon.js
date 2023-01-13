@@ -56,6 +56,20 @@ router.get('/salons/:id' , async (req, res) => {
     }
 })
 
+router.get('/salonE/:id' , async (req, res) => {
+    const email = req.params.id
+
+    try{
+        const salon = await Salon.find({ email:email })
+        if(!salon){
+            return res.status(404).send()
+        }
+        res.send(salon)
+    } catch(e){
+        res.status(500).send()
+    }
+})
+
 router.patch('/salons/:id' , async (req, res) => {
     const updates = Object.keys(req.body)
 

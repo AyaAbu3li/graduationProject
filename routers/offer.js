@@ -8,7 +8,8 @@ router.post('/offers', auth ,async (req,res) => {
         ...req.body,
         salonname: req.user.name,
         picture: req.user.picture,
-        owner: req.user._id
+        owner: req.user._id,
+        salonEmail: req.user.email
     })
     try{
         await offer.save()

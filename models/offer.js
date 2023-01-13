@@ -10,6 +10,9 @@ salonname: {
     type: String,
     required: true
 },
+salonEmail: {
+    type: String,
+},
 name: {
     type: String,
     required: true
