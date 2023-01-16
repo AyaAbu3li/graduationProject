@@ -30,30 +30,30 @@ router.post('/booking', auth ,async (req,res) => {
     }
 })
 
-router.get('/Allbooking' , async (req, res) => {
+router.get('/Allbooking' ,auth, async (req, res) => {
     try{
-        const offers = await Booking.find()
+        const offers = await Booking.find({ SalonEmail: req.user.email })
         res.send(offers)
     } catch(e){
         res.status(500).send()
     }
 })
 
-router.get('/booking/:id' , auth, async (req, res) => {
-    const _id = req.params.id
+// router.get('/booking/:id' , auth, async (req, res) => {
+//     const _id = req.params.id
 
-    try{
-       const booking = await Booking.findOne({ _id, owner: req.user._id })
+//     try{
+//        const booking = await Booking.findOne({ _id, owner: req.user._id })
 
-        if(!booking){
-            return res.status(404).send()
-        }
+//         if(!booking){
+//             return res.status(404).send()
+//         }
 
-        res.send(booking)
-    } catch(e){
-        res.status(500).send()
-    }
-})
+//         res.send(booking)
+//     } catch(e){
+//         res.status(500).send()
+//     }
+// })
 
 router.get('/booking/:id' , async (req, res) => {
     const _id = req.params.id

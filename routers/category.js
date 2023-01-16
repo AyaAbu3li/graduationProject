@@ -27,4 +27,17 @@ router.post('/category', auth, async (req,res) => {
     }
 })
 
+router.delete('/category/:id/:cat' , async (req, res) => {
+    try {
+        const category = await Category.findOneAndDelete({ email: req.params.id ,  category: req.params.cat })
+
+        if (!category) {
+            return res.status(404).send()
+        }
+        res.send(category)
+    }catch(e) {
+        res.status(500).send()
+    }
+})
+
 module.exports = router
